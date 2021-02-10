@@ -1,9 +1,23 @@
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
+}
+html {
+	font-family: Impact;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background-color: lightblue;
+	margin: 0;
+	padding: 0;
+	background-color: darkgray;
+}
+
+.canvas-container {
+	width: 100%;
+	text-align: center;
+}
+
+.img-option {
+  width: 250px;
+  height: auto;
+  cursor: pointer;
 }

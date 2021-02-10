@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +8,27 @@
   <link rel="stylesheet" href="style/main-style.css">
   <title>Men-Generator</title>
 </head>
-<body onload="onInit()">
-  
 
-<script src="script/main-services.js"></script>
-<script src="script/main-controller.js"></script>
+<body onload="onInit()">
+    <div class="images-container">
+    <img onclick="onChooseImg(this)" class="img-option" src="imgs/meme-imgs (square)/1.jpg">
+    <img onclick="onChooseImg(this)" class="img-option" src="imgs/meme-imgs (square)/2.jpg">
+    </div>
+
+    <div class="canvas-container">
+      <canvas id="canvas" height="500" width="500"></canvas>
+    </div>
+
+    <form>
+      <input name="text" type="text" placeholder="Enter Text:">
+      <button onclick="onAddText(event)">add</button>
+    </form>
+
+
+
+
+    <script src="script/main-services.js"></script>
+    <script src="script/main-controller.js"></script>
 </body>
+
 </html>
