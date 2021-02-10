@@ -11,22 +11,31 @@ body {
 	padding: 0;
 	background-color: darkgray;
 }
-.main-container{
-  width: 1020px;
-  margin-left: 50px;  
+.main-container {
+	width: 1020px;
+	margin-left: 50px;
 }
 
-.canvas-editor-container{
-padding-left: 0;
+.images-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+	grid-template-rows: auto;
+	grid-gap: 1rem;
+	/* grid-auto-flow: dense; */
+	margin-bottom: 100px;
+}
+
+.canvas-editor-container {
+	padding-left: 0;
 }
 
 .text-input {
-width: 373px;
-height: 60px;
-border-radius: 12px;
-background-color: #ffffff;
-text-align: center;
-line-height:60px;
+	width: 373px;
+	height: 60px;
+	border-radius: 12px;
+	background-color: #ffffff;
+	text-align: center;
+	line-height: 60px;
 }
 
 .canvas-container {
@@ -35,7 +44,7 @@ line-height:60px;
 }
 
 .img-option {
-	width: 250px;
+	width: 150px;
 	height: auto;
 	cursor: pointer;
 }
@@ -45,8 +54,7 @@ line-height:60px;
 	height: 60px;
 	border-radius: 12px;
 	background-color: #ffffff;
-  margin: 10px 10px 40px ;
-
+	margin: 10px 10px 40px;
 }
 
 .icon-btn {
@@ -54,19 +62,22 @@ line-height:60px;
 	height: 40px;
 }
 
-
 /* Helpers */
 
-.flex{
-  display: flex;
+.flex {
+	display: flex;
 }
 
-.flex-center{
-  display:flex;
-  justify-content: center;
-  align-items: center;
+.flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.btn-pointer{
-cursor: pointer;
+.btn-pointer {
+	cursor: pointer;
+}
+
+.hide {
+	display: none;
 }

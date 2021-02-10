@@ -5,16 +5,18 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/12b8275adb.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="style/main-style.css">
-  <title>Men-Generator</title>
+  <title>Meme-Generator</title>
 </head>
 
 <body onload="onInit()">
   <div class="images-container">
-    <img onclick="onChooseImg(this)" class="img-option" src="imgs/meme-imgs (square)/1.jpg">
-    <img onclick="onChooseImg(this)" class="img-option" src="imgs/meme-imgs (square)/2.jpg">
+    <!-- <img data-id="1" onclick="onChooseImg(this)" class="img-option" src="imgs/meme-imgs (square)/1.jpg">
+    <img data-id="2" onclick="onChooseImg(this)" class="img-option" src="imgs/meme-imgs (square)/2.jpg"> -->
+
   </div>
-  <div class="main-container canvas-editor-container flex">
+  <div class="main-container canvas-editor-container flex hide">
     <div class="canvas-container">
       <canvas id="canvas" height="550" width="550"></canvas>
     </div>
@@ -24,10 +26,14 @@
       </div>
       <div class="first-row-btns-container flex">
         <figure class="icon-container flex-center"><img class="icon-btn btn-pointer"
-            src="icons/up-and-down-opposite-double-arrows-side-by-side.png"></figure>
+            src="icons/up-and-down-opposite-double-arrows-side-by-side.png" onclick="onSwitchRow()"></figure>
         <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/add.png" onclick="onAddText()"></figure>
         <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/trash.png"></figure>
-      </div>
+        <figure class="icon-container flex-center"><i class="fas fa-arrow-up icon-btn btn-pointer fa-3x btn-pointer" onclick="onMoveText(-5)"></i></figure>
+        <figure class="icon-container flex-center"><i class="fas fa-arrow-down icon-btn btn-pointer fa-3x btn-pointer" onclick="onMoveText(5)"></i></figure>
+      </div> 
+
+
       <div class="second-row-btns-container flex">
         <figure class="icon-container flex-center"><img class="icon-btn btn-pointer"
             src="icons/increase font - icon.png" onclick="onChangeFontSize(5)"></figure>

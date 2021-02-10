@@ -1,47 +1,118 @@
 'use strict';
 
 // console.log('in main-services');
+let gCurrActiveLine = 0;
+let gIdx = 1;
+const gKeywords = {
+	happy: 12,
+	'funny puk': 1,
+};
+const gImgs = [
+	{
+		id: 1,
+		url: 'img/1.jpg',
+		keywords: ['trump'],
+	},
+	{
+		id: 2,
+		url: 'img/3.jpg',
+		keywords: ['dogs'],
+	},
+	{
+		id: 3,
+		url: 'img/3.jpg',
+		keywords: ['dogs'],
+	},
+	{
+		id: 4,
+		url: 'img/4.jpg',
+		keywords: ['dogs'],
+	},
+	{
+		id: 5,
+		url: 'img/5.jpg',
+		keywords: ['dogs'],
+	},
+	{
+		id: 6,
+		url: 'img/6.jpg',
+		keywords: ['dogs'],
+	},
+	{
+		id: 7,
+		url: 'img/7.jpg',
+		keywords: ['dogs'],
+	},
+	{
+		id: 8,
+		url: 'img/8.jpg',
+		keywords: ['dogs'],
+	},
+	{
+		id: 9,
+		url: 'img/9.jpg',
+		keywords: ['dogs'],
+	},
+	{
+		id: 10,
+		url: 'img/10.jpg',
+		keywords: ['dogs'],
+	},
+];
 
-const gKeywords = { happy: 12, 'funny puk': 1 };
-const gImgs = [{ id: 1, url: 'img/1.jpg', keywords: ['trump'] }];
+function getImgs() {
+	return gImgs;
+}
+
 const gMeme = {
-	idx: 1,
 	selectedImgId: 5,
 	selectedLineIdx: 0,
-	properties: [
-		{
-			txt: 'Hola',
-			img: 'img/1.jpg',
-			size: 30,
-			align: 'center',
-			color: 'red',
-			font: 'Impact',
-		},
-	],
-	linesPos: 50,
+	line: [],
 };
 
 function getCurrMeme() {
 	return gMeme;
 }
-// function getCurrImg() {
-// 	return gImgs[0];
-// }
 
-function updateMemeText(txt) {
-	gMeme.properties[0].txt = txt;
+function createNewLine(txt) {
+	gMeme.line.push({
+		gIdx,
+		txt,
+		size: 30,
+		align: 'center',
+		color: 'red',
+		font: 'impact',
+		yPos: 50,
+	});
+	gIdx++;
+	// changeCurrYpos();
+	// gCurrActiveLine++;
 }
 
-function updateMemeImg(img) {
-	gMeme.properties[0].img = img;
+function getLineByIdx(lineIdx) {
+	return gMeme.line.find((line) => line.idx === lineIdx);
 }
 
-function changeCurrLinePos() {
+function updateLineText(txt, activeLine) {
+	gMeme.line[activeLine].txt = txt;
+}
+
+function changeCurrYpos() {
 	let diff = 200;
-	if (gMeme.linesPos >= 450) return (gMeme.linesPos = 50);
-	return (gMeme.linesPos += diff);
+	if (gMeme.line[gCurrActiveLine].yPos >= 450)
+		gMeme.line[gCurrActiveLine].yPos = 50;
+	else gMeme.line[gCurrActiveLine].yPos += diff;
 }
 
 function changeFontSize(diff) {
-	gMeme.properties[0].size += diff;
+	gMeme.line[gCurrActiveLine].size += diff;
+}
+
+function moveText(diff) {
+	gMeme.line[gCurrActiveLine].yPos += diff;
+	console.log(gMeme.line[gCurrActiveLine].yPos);
+}
+
+function getPicById(idx) {
+	return gImgs.find((img) => img.id === idx);
 }
