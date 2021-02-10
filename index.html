@@ -10,25 +10,38 @@
 </head>
 
 <body onload="onInit()">
-    <div class="images-container">
+  <div class="images-container">
     <img onclick="onChooseImg(this)" class="img-option" src="imgs/meme-imgs (square)/1.jpg">
     <img onclick="onChooseImg(this)" class="img-option" src="imgs/meme-imgs (square)/2.jpg">
-    </div>
-
+  </div>
+  <div class="main-container canvas-editor-container flex">
     <div class="canvas-container">
-      <canvas id="canvas" height="500" width="500"></canvas>
+      <canvas id="canvas" height="550" width="550"></canvas>
     </div>
+    <div class="editor-container">
+      <div class="text-input">
+        <input id="text-input" name="text" type="text" placeholder="Enter Text:">
+      </div>
+      <div class="first-row-btns-container flex">
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer"
+            src="icons/up-and-down-opposite-double-arrows-side-by-side.png"></figure>
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/add.png" onclick="onAddText()"></figure>
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/trash.png"></figure>
+      </div>
+      <div class="second-row-btns-container flex">
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer"
+            src="icons/increase font - icon.png" onclick="onChangeFontSize(5)"></figure>
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/decrease font - icon.png" onclick="onChangeFontSize(-5)"></figure>
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/align-to-left.png" onclick="onAlignLeft()"></figure>
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/center-text-alignment.png" onclick="onAlignCenter()"></figure>
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/align-to-right.png" onclick="onAlignRight()"></figure>
+      </div>
+    </div>
+  </div>
 
-    <form>
-      <input name="text" type="text" placeholder="Enter Text:">
-      <button onclick="onAddText(event)">add</button>
-    </form>
 
-
-
-
-    <script src="script/main-services.js"></script>
-    <script src="script/main-controller.js"></script>
+  <script src="script/main-services.js"></script>
+  <script src="script/main-controller.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 * {
 	box-sizing: border-box;
 }
+
 html {
 	font-family: Impact;
 }
@@ -10,6 +11,23 @@ body {
 	padding: 0;
 	background-color: darkgray;
 }
+.main-container{
+  width: 1020px;
+  margin-left: 50px;  
+}
+
+.canvas-editor-container{
+padding-left: 0;
+}
+
+.text-input {
+width: 373px;
+height: 60px;
+border-radius: 12px;
+background-color: #ffffff;
+text-align: center;
+line-height:60px;
+}
 
 .canvas-container {
 	width: 100%;
@@ -17,7 +35,38 @@ body {
 }
 
 .img-option {
-  width: 250px;
-  height: auto;
-  cursor: pointer;
+	width: 250px;
+	height: auto;
+	cursor: pointer;
+}
+
+.icon-container {
+	width: 60px;
+	height: 60px;
+	border-radius: 12px;
+	background-color: #ffffff;
+  margin: 10px 10px 40px ;
+
+}
+
+.icon-btn {
+	width: 40px;
+	height: 40px;
+}
+
+
+/* Helpers */
+
+.flex{
+  display: flex;
+}
+
+.flex-center{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-pointer{
+cursor: pointer;
 }

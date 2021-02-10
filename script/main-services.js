@@ -9,22 +9,39 @@ const gMeme = {
 	selectedImgId: 5,
 	selectedLineIdx: 0,
 	properties: [
-		{ txt: 'Hola', img: 'img/1.jpg', size: 30, align: 'center', color: 'red', font: 'Impact' },
+		{
+			txt: 'Hola',
+			img: 'img/1.jpg',
+			size: 30,
+			align: 'center',
+			color: 'red',
+			font: 'Impact',
+		},
 	],
-  linesPos: {top: 50, mid: 250, bottom: 450}
+	linesPos: 50,
 };
 
 function getCurrMeme() {
 	return gMeme;
 }
-function getCurrImg() {
-	return gImgs[0];
+// function getCurrImg() {
+// 	return gImgs[0];
+// }
+
+function updateMemeText(txt) {
+	gMeme.properties[0].txt = txt;
 }
 
-function updateMemeText(txt){
-  gMeme.properties[0].txt = txt;
+function updateMemeImg(img) {
+	gMeme.properties[0].img = img;
 }
 
-function updateMemeImg(img){
-  gMeme.properties[0].img = img;
+function changeCurrLinePos() {
+	let diff = 200;
+	if (gMeme.linesPos >= 450) return (gMeme.linesPos = 50);
+	return (gMeme.linesPos += diff);
+}
+
+function changeFontSize(diff) {
+	gMeme.properties[0].size += diff;
 }
