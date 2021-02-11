@@ -75,14 +75,16 @@ function getCurrMeme() {
 	return gMeme;
 }
 
-function createNewLine(txt) {
+function createNewLine(txt, font, fillStyle, strokeStyle) {
 	gMeme.line.push({
 		gIdx,
 		txt,
 		size: 30,
 		align: 'center',
 		color: 'red',
-		font: 'impact',
+		font,
+    fillStyle,
+    strokeStyle,
 		yPos: 50,
 	});
 	gIdx++;
@@ -110,8 +112,17 @@ function changeFontSize(diff) {
 	gMeme.line[gMeme.selectedLineIdx].size += diff;
 }
 
+function alignText(direction) {
+	gMeme.line[gMeme.selectedLineIdx].align = direction;
+}
+
 function moveText(diff) {
 	gMeme.line[gMeme.selectedLineIdx].yPos += diff;
+}
+
+function deleteLine() {
+	gMeme.line.splice(gMeme.selectedLineIdx, 1);
+
 }
 
 function getPicById(idx) {
