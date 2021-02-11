@@ -67,6 +67,7 @@ function getImgs() {
 const gMeme = {
 	selectedImgId: 5,
 	selectedLineIdx: 0,
+	nextLineIdx: 0,
 	line: [],
 };
 
@@ -85,17 +86,18 @@ function createNewLine(txt) {
 		yPos: 50,
 	});
 	gIdx++;
+	gMeme.selectedLineIdx = gMeme.line.length - 1;
 	// changeCurrYpos();
-	// gCurrActiveLine++;
 }
 
-function getLineByIdx(lineIdx) {
-	return gMeme.line.find((line) => line.idx === lineIdx);
+function switchActiveLine() {
+	gMeme.selectedLineIdx++;
+	if (gMeme.selectedLineIdx === gMeme.line.length) gMeme.selectedLineIdx = 0;
 }
 
-function updateLineText(txt, activeLine) {
-	gMeme.line[activeLine].txt = txt;
-}
+// function getActiveLine() {
+// 	return gMeme.line.find((line) => line.idx === gMeme.selectedLineIdx);
+// }
 
 function changeCurrYpos() {
 	let diff = 200;
@@ -105,13 +107,11 @@ function changeCurrYpos() {
 }
 
 function changeFontSize(diff) {
-	gMeme.line[gCurrActiveLine].size += diff;
+	gMeme.line[gMeme.selectedLineIdx].size += diff;
 }
 
-function moveText(diff, activeLine) {
-  console.log(activeLine);
-  
-	gMeme.line[activeLine].yPos += diff;
+function moveText(diff) {
+	gMeme.line[gMeme.selectedLineIdx].yPos += diff;
 }
 
 function getPicById(idx) {

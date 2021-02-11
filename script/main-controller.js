@@ -4,7 +4,6 @@ var gElCanvas;
 var gCtx;
 var gCurrMeme;
 var gCurrElImg;
-var gActiveLine = 0;
 
 function onInit() {
 	console.log('onInit');
@@ -32,7 +31,6 @@ function onAddText() {
 	let CurrMeme = getCurrMeme();
 	var txt = document.querySelector('input[name=text]').value;
 	createNewLine(txt);
-	// updateLineText(txt, gActiveLine);
 	renderCanvas();
 }
 
@@ -70,18 +68,17 @@ function resetCanvas() {
 }
 
 function onChangeFontSize(diff) {
-	console.log('onChangeFontSize');
+	// console.log('onChangeFontSize');
 	gCurrMeme = getCurrMeme();
-	changeFontSize(diff, gActiveLine);
+	changeFontSize(diff);
 	resetCanvas();
 	renderCanvas();
 }
 
 function onSwitchRow() {
 	// console.log('onSwitchRow');
-	gActiveLine++;
-	let currLine = getLineByIdx(gActiveLine);
-	if (gActiveLine > 2) gActiveLine = 0;
+  switchActiveLine()
+
 }
 
 function onAlignLeft() {
@@ -98,7 +95,7 @@ function onAlignRight() {
 
 function onMoveText(diff) {
 	// console.log('onMoveText');
-	moveText(diff, gActiveLine);
+	moveText(diff);
 	resetCanvas();
 	renderCanvas();
 }
