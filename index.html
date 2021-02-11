@@ -11,41 +11,78 @@
 </head>
 
 <body onload="onInit()">
+  <header class="header flex-center">
+    <div class="header-content main-container flex justify-between align-center">
+      <div class="logo-container"><img class="logo" src="imgs/logo.png"></div>
+      <ul class="menu-items-container clean-list">
+        <li class="menu-item">Gallery</li>
+      </ul>
+    </div>
+  </header>
+  <main>
   <div class="images-container">
-    <!-- <img data-id="1" onclick="onChooseImg(this)" class="img-option" src="imgs/meme-imgs (square)/1.jpg">
-    <img data-id="2" onclick="onChooseImg(this)" class="img-option" src="imgs/meme-imgs (square)/2.jpg"> -->
-
+    <div class="images-content main-container">
+      <!-- images are rendered here -->
+    </div>
   </div>
-  <div class="main-container canvas-editor-container flex hide">
+  <div class="canvas-editor-container main-container flex hide">
     <div class="canvas-container">
       <canvas id="canvas" height="550" width="550"></canvas>
     </div>
-    <div class="editor-container">
+    <div class="editor-container main-container">
       <div class="text-input">
         <input id="text-input" name="text" type="text" placeholder="Enter Text:">
       </div>
       <div class="first-row-btns-container flex">
         <figure class="icon-container flex-center"><img class="icon-btn btn-pointer"
             src="icons/up-and-down-opposite-double-arrows-side-by-side.png" onclick="onSwitchRow()"></figure>
-        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/add.png" onclick="onAddText()"></figure>
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/add.png"
+            onclick="onAddText()"></figure>
         <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/trash.png"></figure>
-        <figure class="icon-container flex-center"><i class="fas fa-arrow-up icon-btn btn-pointer fa-3x btn-pointer" onclick="onMoveText(-25)"></i></figure>
-        <figure class="icon-container flex-center"><i class="fas fa-arrow-down icon-btn btn-pointer fa-3x btn-pointer" onclick="onMoveText(25)"></i></figure>
-      </div> 
+        <figure class="icon-container flex-center"><i class="fas fa-arrow-up icon-btn btn-pointer fa-3x btn-pointer"
+            onclick="onMoveText(-25)"></i></figure>
+        <figure class="icon-container flex-center"><i class="fas fa-arrow-down icon-btn btn-pointer fa-3x btn-pointer"
+            onclick="onMoveText(25)"></i></figure>
+      </div>
 
 
       <div class="second-row-btns-container flex">
         <figure class="icon-container flex-center"><img class="icon-btn btn-pointer"
             src="icons/increase font - icon.png" onclick="onChangeFontSize(5)"></figure>
-        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/decrease font - icon.png" onclick="onChangeFontSize(-5)"></figure>
-        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/align-to-left.png" onclick="onAlignLeft()"></figure>
-        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/center-text-alignment.png" onclick="onAlignCenter()"></figure>
-        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/align-to-right.png" onclick="onAlignRight()"></figure>
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer"
+            src="icons/decrease font - icon.png" onclick="onChangeFontSize(-5)"></figure>
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/align-to-left.png"
+            onclick="onAlignLeft()"></figure>
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer"
+            src="icons/center-text-alignment.png" onclick="onAlignCenter()"></figure>
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/align-to-right.png"
+            onclick="onAlignRight()"></figure>
       </div>
     </div>
   </div>
+</main>
 
 
+<section class="about main-container flex-center">
+  <div class="about-pic"><img src="imgs/profilePic.jpg"></div>
+  <div class="about-content flex-start-row ">
+    <h2>Gilad Peltz</h2>
+    <p>Barista whipped irish coffee spoon so acerbic fair trade. Aromatic, mug cappuccino single origin seasonal espresso pumpkin spice body.</p>
+    <div class="social-media-links flex">
+      <div class="social-media-icon flex-center"><i class="fab fa-facebook-f fa-2x btn-pointer"></i></div>
+      <div class="social-media-icon flex-center"><i class="fab fa-linkedin-in fa-2x btn-pointer"></i></div>
+      <div class="social-media-icon flex-center"><i class="fab fa-github fa-2x btn-pointer"></i></div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<footer class="footer flex-center-col">
+  <div class="logo-container"><img class="logo" src="imgs/logo.png"></div>
+  <p>all rights reserved 2019</p>
+</footer>
   <script src="script/main-services.js"></script>
   <script src="script/main-controller.js"></script>
 </body>

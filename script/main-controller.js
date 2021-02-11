@@ -20,11 +20,11 @@ function renderGallery() {
 		(img, i) =>
 			`<img data-id="${
 				i + 1
-			}" onclick="onChooseImg(this)" class="img-option" src="imgs/meme-imgs (square)/${
+			}" onclick="onChooseImg(this)" class="img-option btn-pointer" src="imgs/meme-imgs (square)/${
 				i + 1
 			}.jpg">`
 	);
-	document.querySelector('.images-container').innerHTML = htmls.join('');
+	document.querySelector('.images-content').innerHTML = htmls.join('');
 }
 
 function onAddText() {
@@ -55,6 +55,7 @@ function renderText() {
 function onChooseImg(elImg) {
 	document.querySelector('.canvas-editor-container').classList.toggle('hide');
 	document.querySelector('.images-container').classList.toggle('hide');
+  document.querySelector('.about').classList.toggle('hide');
 	let currPicIdx = +elImg.dataset.id;
 	let currPic = getPicById(currPicIdx);
 	gCurrElImg = elImg;
@@ -98,4 +99,15 @@ function onMoveText(diff) {
 	moveText(diff);
 	resetCanvas();
 	renderCanvas();
+}
+
+function drawRectBorder(text, x, y) {
+  gCtx.beginPath()
+  gCtx.rect(x, y, 150, 150)
+  gCtx.fillStyle = 'orange'
+  // gCtx.fill()
+  let width = gCtx.measureText(text);
+  gCtx.fillRect(x, y, 150, 150)
+  gCtx.strokeStyle = 'black'
+  gCtx.stroke()
 }
