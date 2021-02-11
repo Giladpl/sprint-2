@@ -78,10 +78,10 @@ function onChangeFontSize(diff) {
 }
 
 function onSwitchRow() {
-	console.log('onSwitchRow');
-	gCurrMeme = getCurrMeme();
-	if (gActiveLine === gCurrMeme.line.length) gActiveLine = 0;
-	gActiveLine += 1;
+	// console.log('onSwitchRow');
+	gActiveLine++;
+	let currLine = getLineByIdx(gActiveLine);
+	if (gActiveLine > 2) gActiveLine = 0;
 }
 
 function onAlignLeft() {
@@ -98,7 +98,7 @@ function onAlignRight() {
 
 function onMoveText(diff) {
 	// console.log('onMoveText');
-	moveText(diff);
+	moveText(diff, gActiveLine);
 	resetCanvas();
 	renderCanvas();
 }

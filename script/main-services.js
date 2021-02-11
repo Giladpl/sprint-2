@@ -108,9 +108,10 @@ function changeFontSize(diff) {
 	gMeme.line[gCurrActiveLine].size += diff;
 }
 
-function moveText(diff) {
-	gMeme.line[gCurrActiveLine].yPos += diff;
-	console.log(gMeme.line[gCurrActiveLine].yPos);
+function moveText(diff, activeLine) {
+  console.log(activeLine);
+  
+	gMeme.line[activeLine].yPos += diff;
 }
 
 function getPicById(idx) {
