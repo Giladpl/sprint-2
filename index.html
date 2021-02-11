@@ -19,19 +19,21 @@
       </ul>
     </div>
   </header>
+
   <main>
     <div class="images-container">
       <div class="images-content main-container">
         <!-- images are rendered here -->
       </div>
     </div>
-    <div class="canvas-editor-container main-container flex hide">
+    <div class="canvas-editor-container flex-center main-container hide">
       <div class="canvas-container">
         <canvas id="canvas" height="550" width="550"></canvas>
       </div>
-      <div class="editor-container main-container">
+      <div class="editor-container">
+        
         <div class="text-input">
-          <input oninput="onShowText(this.value)" id="text-input" name="text" type="text" placeholder="Enter Text:">
+          <input oninput="onShowText(this.value)" class="text-input" name="text" type="text" placeholder="Enter Text:">
         </div>
         <div class="first-row-btns-container flex">
           <figure class="icon-container flex-center"><img class="icon-btn btn-pointer"
@@ -68,14 +70,14 @@
           <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/text stroke.png"><input
             class="color-picker-stroke icon-btn" type="color"></figure>
           <figure class="icon-container flex-center"><img class="icon-btn" src="icons/paint-board-and-brush.png"><input
-              class="color-picker-fill icon-btn" type="color"></figure>
-
+              class="color-picker-fill icon-btn" type="color" value="#ff1500"></figure>
         </div>
       </div>
     </div>
   </main>
 
-  <section class="about main-container flex-center">
+  <section class="about">
+    <div class="about-content main-container flex-center">
     <div class="about-pic"><img src="imgs/profilePic.jpg"></div>
     <div class="about-content flex-start-row ">
       <h2>Gilad Peltz</h2>
@@ -86,9 +88,8 @@
         <div class="social-media-icon flex-center"><i class="fab fa-linkedin-in fa-2x btn-pointer"></i></div>
         <div class="social-media-icon flex-center"><i class="fab fa-github fa-2x btn-pointer"></i></div>
       </div>
-
     </div>
-
+  </div>
   </section>
 
 
