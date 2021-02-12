@@ -4,6 +4,9 @@ var gElCanvas;
 var gCtx;
 var gCurrMeme;
 var gCurrElImg;
+var gActiveLine;
+var gStartPos;
+const gTouchEvs = ['touchstart', 'touchmove', 'touchend'];
 
 function onInit() {
 	console.log('onInit');
@@ -12,6 +15,78 @@ function onInit() {
 	gCtx = gElCanvas.getContext('2d');
 	gCtx.fillStyle = 'lightskyblue';
 	gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height);
+	addListeners();
+}
+
+function addListeners() {
+	addMouseListeners();
+	addTouchListeners();
+}
+
+function addMouseListeners() {
+	gElCanvas.addEventListener('mousemove', onMove);
+
+	gElCanvas.addEventListener('mousedown', onDown);
+
+	gElCanvas.addEventListener('mouseup', onUp);
+}
+
+function addTouchListeners() {
+	gElCanvas.addEventListener('touchmove', onMove);
+
+	gElCanvas.addEventListener('touchstart', onDown);
+
+	gElCanvas.addEventListener('touchend', onUp);
+}
+
+function onDown(ev) {
+	const pos = getEvPos(ev);
+	gActiveLine = isLineClicked(pos);	
+	if (!gActiveLine) return;
+	gActiveLine.isDragging = true;
+	gStartPos = pos;
+	document.body.style.cursor = 'grabbing';
+}
+
+function onMove(ev) {
+	if (!gActiveLine) return;
+	if (gActiveLine.isDragging) {
+		const pos = getEvPos(ev);
+		
+		const distanceX = pos.x - gStartPos.x;
+		const distanceY = pos.y - gStartPos.y;
+	
+		gActiveLine.pos.x += distanceX;
+		gActiveLine.pos.y += distanceY;
+
+		gStartPos = pos;
+		document.body.style.cursor = 'grabbing';
+		renderCanvas();
+	}
+}
+
+function onUp() {
+	if (!gActiveLine) return;
+	gActiveLine.isDragging = false;
+	gActiveLine = null;
+	document.body.style.cursor = 'auto';
+
+}
+
+function getEvPos(ev) {
+	var pos = {
+		x: ev.offsetX,
+		y: ev.offsetY,
+	};
+	// if (gTouchEvs.includes(ev.type)) {
+	// 	ev.preventDefault();
+	// 	ev = ev.changedTouches[0];
+	// 	pos = {
+	// 		x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+	// 		y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+	// 	};
+	// }
+	return pos;
 }
 
 function renderGallery() {
@@ -28,12 +103,27 @@ function renderGallery() {
 }
 
 function onAddText() {
-	let CurrMeme = getCurrMeme();
 	var txt = document.querySelector('input[name=text]').value;
+	var {
+		width,
+		actualBoundingBoxLeft: midToLeftW,
+		actualBoundingBoxRight: midToRightW,
+		actualBoundingBoxAscent: height,
+	} = gCtx.measureText(txt);
 	var font = document.querySelector('.select-font').value;
 	var fillStyle = document.querySelector('.color-picker-fill').value;
 	var strokeStyle = document.querySelector('.color-picker-stroke').value;
-	createNewLine(txt, font, fillStyle, strokeStyle);
+	createNewLine(
+		txt,
+		font,
+		fillStyle,
+		strokeStyle,
+		width,
+		midToLeftW,
+		midToRightW,
+		height
+	);
+	document.querySelector('input[name=text]').value = '';
 	renderCanvas();
 }
 
@@ -50,8 +140,8 @@ function renderText() {
 		gCtx.fillStyle = line.fillStyle;
 		gCtx.font = `${line.size}px ${line.font}`;
 		gCtx.textAlign = line.align;
-		gCtx.fillText(line.txt, canvas.width / 2, line.yPos);
-		gCtx.strokeText(line.txt, canvas.width / 2, line.yPos);
+		gCtx.fillText(line.txt, line.pos.x, line.pos.y);
+		gCtx.strokeText(line.txt, line.pos.x, line.pos.y);
 	});
 }
 
@@ -115,20 +205,20 @@ function drawRectBorder(text, x, y) {
 	gCtx.stroke();
 }
 
-// TODO- need to allow user to see also dynamic changes with fontsize/algin  
+// TODO- need to allow user to see also dynamic changes with fontsize/algin
 function onShowText(string) {
-  var font = document.querySelector('.select-font').value;
+	var font = document.querySelector('.select-font').value;
 	var fontSize = 30;
 	var fillStyle = document.querySelector('.color-picker-fill').value;
 	var strokeStyle = document.querySelector('.color-picker-stroke').value;
-  gCtx.lineWidth = 2;
+	gCtx.lineWidth = 2;
 	gCtx.strokeStyle = strokeStyle;
 	gCtx.fillStyle = fillStyle;
 	gCtx.font = `${fontSize}px ${font}`;
-  gCtx.textAlign = 'center';
+	gCtx.textAlign = 'center';
 	gCtx.fillRect(0, 0, canvas.width, canvas.height);
 	gCtx.drawImage(gCurrElImg, 0, 0, gElCanvas.width, gElCanvas.height);
-	gCtx.fillText(string, canvas.height / 2, 50);
-  gCtx.strokeText(string, canvas.width / 2, 50);
-	renderText()
+	gCtx.fillText(string, canvas.width / 2, canvas.height / 8);
+	gCtx.strokeText(string, canvas.width / 2, canvas.height / 8);
+	renderText();
 }
