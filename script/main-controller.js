@@ -50,6 +50,7 @@ function onDown(ev) {
 	document.body.style.cursor = 'grabbing';
 }
 
+//TODO drag and drop works only on PC and not on phone
 function onMove(ev) {
 	if (!gActiveLine) return;
 	if (gActiveLine.isDragging) {
@@ -227,11 +228,13 @@ function onChangeFill(elColor) {
 	changeFill(color);
 	renderCanvas();
 }
+
 function onChangeStroke(elColor) {
 	let color = elColor.value;
 	changeStroke(color);
 	renderCanvas();
 }
+
 function onChangeFont(elFont) {
 	let font = elFont.value;
 	changeFont(font);

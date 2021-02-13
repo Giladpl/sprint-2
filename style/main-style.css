@@ -86,7 +86,7 @@ body {
 	background-color: #e3e3e3;
 	gap: 3rem;
 	margin: 20px auto;
-	
+
 }
 
 .canvas-container {
@@ -118,9 +118,9 @@ body {
 	grid-column: 5 / 6;
 	grid-row: 4;
 	border-radius: 12px;
-	font-size: 20px;
+	font-size: 14px;
 	height: 60px;
-	width: 100px;
+	width: 60px;
 }
 
 .icon-container {
@@ -249,32 +249,30 @@ body {
 }
 
 @media (max-width: 1150px) {
-.main-container {
-	width: 900px;
-}
+	.main-container {
+		width: 900px;
+	}
+
 	#canvas {
 		height: 450px;
 		width: 450px;
 	}
 
 	.editor-container {
-	grid-gap: 5px;
-	}
-	.select-font{
-		grid-column: 2 / 4;
-		grid-row: 5;
+		grid-gap: 5px;
 	}
 }
 
-@media (max-width: 930px){
+@media (max-width: 930px) {
 	.main-container {
 		width: 600px;
 	}
-	
+
 	.canvas-editor-container {
 		flex-direction: column;
 		align-items: center;
 	}
+
 	.images-content {
 		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 	}
@@ -288,15 +286,33 @@ body {
 	.main-container {
 		width: 80%;
 	}
-	body{
+
+	body {
 		width: 100%;
 	}
+
 	#canvas {
 		width: 350px;
 		height: 350px;
 	}
+
 	.images-content {
 		grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
 		gap: 10px;
+	}
+
+	.icon-container{
+		width: 40px;
+		height: 40px;
+	}
+
+	.icon-btn{
+		width: 20px;
+		height: 20px;
+	}
+
+	.fa, .fas {
+		font-size: 16px;
+		text-align: center;
 	}
 }
