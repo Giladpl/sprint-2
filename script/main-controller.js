@@ -260,6 +260,11 @@ function onUploadImg(elForm, ev) {
   doUploadImg(elForm, onSuccess);
 }
 
+function onBackToGallery(){
+	document.querySelector('.canvas-editor-container').classList.toggle('hide');
+	document.querySelector('.images-container').classList.toggle('hide');
+	document.querySelector('.about').classList.toggle('hide');
+}
 
 // function onChangeProperty(value, property) {
 // 	// const value = elValue.value;

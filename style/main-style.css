@@ -38,6 +38,10 @@ body {
 	font-size: 19px;
 }
 
+.menu-item:hover{
+border-bottom: white solid;
+}
+
 .header-content {
 	width: 100%;
 }
