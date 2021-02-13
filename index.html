@@ -22,71 +22,64 @@
 
   <main>
     <div class="images-container">
-      <div class="search-container flex-center"><input class="search-input-field" type="text" placeholder="Search" onkeyup="onFilterSearch(event, this)"></div>
+      <div class="search-container flex-center"><input class="search-input-field" type="text" placeholder="Search"
+          onkeyup="onFilterSearch(event, this)"></div>
       <div class="images-content main-container">
         <!-- images are rendered here -->
       </div>
     </div>
-    <div class="canvas-editor-container flex-center main-container hide">
+    <div class="canvas-editor-container main-container flex hide">
       <div class="canvas-container">
-        <canvas id="canvas" height="450" width="450"></canvas>
+        <canvas id="canvas" height="550" width="550"></canvas>
       </div>
       <div class="editor-container">
 
-        <div class="text-input">
-          <input oninput="onShowText(this.value)" class="text-input" name="text" type="text" placeholder="Enter Text:">
-        </div>
-        <div class="first-row-btns-container flex">
-          <figure class="icon-container flex-center"><img class="icon-btn btn-pointer"
-              src="icons/up-and-down-opposite-double-arrows-side-by-side.png" onclick="onSwitchRow()"></figure>
-          <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/add.png"
-              onclick="onAddText()"></figure>
-          <figure onclick="onDeleteLine()" class="icon-container flex-center"><img class="icon-btn btn-pointer"
-              src="icons/trash.png"></figure>
-          <figure class="icon-container flex-center"><i class="fas fa-arrow-up icon-btn btn-pointer fa-3x btn-pointer"
-              onclick="onMoveText(-25)"></i></figure>
-          <figure class="icon-container flex-center"><i class="fas fa-arrow-down icon-btn btn-pointer fa-3x btn-pointer"
-              onclick="onMoveText(25)"></i></figure>
-        </div>
+        <input oninput="onShowText(this.value)" class="text-input" name="text" type="text" placeholder="Enter Text:">
 
 
-        <div class="second-row-btns-container flex">
-          <figure class="icon-container flex-center"><img class="icon-btn btn-pointer"
-              src="icons/increase font - icon.png" onclick="onChangeFontSize(5)"></figure>
-          <figure class="icon-container flex-center"><img class="icon-btn btn-pointer"
-              src="icons/decrease font - icon.png" onclick="onChangeFontSize(-5)"></figure>
-          <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/align-to-left.png"
-              onclick="onAlign('right')"></figure>
-          <figure class="icon-container flex-center"><img class="icon-btn btn-pointer"
-              src="icons/center-text-alignment.png" onclick="onAlign('center')"></figure>
-          <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/align-to-right.png"
-              onclick="onAlign('left')"></figure>
-        </div>
-        <div class="third-row-btns-container flex">
-          <div><select onchange="onChangeFont(this)" class="select-font">
-              <option value="Impact">Impact</option>
-              <option value="GochiHand-Regular">hand-written</option>
-            </select>
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer"
+            src="icons/up-and-down-opposite-double-arrows-side-by-side.png" onclick="onSwitchRow()"></figure>
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/add.png"
+            onclick="onAddText()"></figure>
+        <figure onclick="onDeleteLine()" class="icon-container flex-center"><img class="icon-btn btn-pointer"
+            src="icons/trash.png"></figure>
+        <figure class="icon-container flex-center"><i class="fas fa-arrow-up icon-btn btn-pointer fa-3x btn-pointer"
+            onclick="onMoveText(-25)"></i></figure>
+        <figure class="icon-container flex-center"><i class="fas fa-arrow-down icon-btn btn-pointer fa-3x btn-pointer"
+            onclick="onMoveText(25)"></i></figure>
+
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer"
+            src="icons/increase font - icon.png" onclick="onChangeFontSize(5)"></figure>
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer"
+            src="icons/decrease font - icon.png" onclick="onChangeFontSize(-5)"></figure>
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/align-to-left.png"
+            onclick="onAlign('right')"></figure>
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer"
+            src="icons/center-text-alignment.png" onclick="onAlign('center')"></figure>
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/align-to-right.png"
+            onclick="onAlign('left')"></figure>
+
+
+        <select onchange="onChangeFont(this)" class="select-font flex-center">
+          <option value="Impact">Impact</option>
+          <option value="GochiHand-Regular">hand-written</option>
+        </select>
+
+        <figure class="icon-container flex-center"><img class="icon-btn btn-pointer flex-center" src="icons/text stroke.png"><input
+            class="color-picker-stroke icon-btn flex-center" onchange="onChangeStroke(this)" type="color"></figure>
+        <figure class="icon-container flex-center"><img class="icon-btn flex-center" src="icons/paint-board-and-brush.png"><input
+            class="color-picker-fill icon-btn flex-center" onchange="onChangeFill(this)" type="color" value="#ff1500"></figure>
+
+        <a href="#" class="icon-container flex-center clean-link " onclick="onDownloadImg(this)" download="my-meme.jpg">
+          <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+        <form class="flex-center" action="" method="POST" enctype="multipart/form-data" onsubmit="onUploadImg(this, event)">
+          <input name="img" id="imgData" type="hidden" />
+
+          <div class="share-container flex-center">
+            <button class="share-btn  btn-pointer  icon-container" type="submit"><i class="fa fa-share-alt fa-3x"
+                aria-hidden="true"></i></button>
           </div>
-          <figure class="icon-container flex-center"><img class="icon-btn btn-pointer"
-              src="icons/text stroke.png"><input class="color-picker-stroke icon-btn" onchange="onChangeStroke(this)"
-              type="color"></figure>
-          <figure class="icon-container flex-center"><img class="icon-btn" src="icons/paint-board-and-brush.png"><input
-              class="color-picker-fill icon-btn" onchange="onChangeFill(this)" type="color" value="#ff1500"></figure>
-        </div>
-
-        <div class="forth-row-btns-container flex">
-          <a href="#" class="icon-container flex-center clean-link " onclick="onDownloadImg(this)"
-            download="my-meme.jpg"> <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
-          <form action="" method="POST" enctype="multipart/form-data" onsubmit="onUploadImg(this, event)">
-            <input name="img" id="imgData" type="hidden" />
-           
-            <div class="share-container">
-              <button class="share-btn icon-container flex-center btn-pointer" type="submit"><i class="fa fa-share-alt fa-3x" aria-hidden="true"></i></button>
-            </div>
-          </form>
-
-        </div>
+        </form>
       </div>
     </div>
   </main>

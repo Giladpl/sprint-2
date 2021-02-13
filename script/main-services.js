@@ -100,6 +100,7 @@ const gImgs = [
 	},
 ];
 
+//TODO add the ability to also return partial searches and not only the entire string + add toLowerCase 
 function getImgs(keyword = 'all') {
 	const filteredImgs = gImgs.filter(img => img.keywords.includes(keyword))
 	return filteredImgs;
@@ -159,12 +160,11 @@ function getActiveLine() {
 	return gMeme.line.find((line) => line.gIdx === gMeme.selectedLineIdx);
 }
 
-
 function getPicById(idx) {
 	return gImgs.find((img) => img.id === idx);
 }
 
-// TODO- combine the below 4 functions into one updateMemeLine function
+// TODO- combine all function that changes Meme properties into one function
 
 function changeFontSize(diff) {
 	gMeme.line[gMeme.selectedLineIdx].size += diff;
