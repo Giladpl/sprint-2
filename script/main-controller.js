@@ -260,10 +260,15 @@ function onUploadImg(elForm, ev) {
   doUploadImg(elForm, onSuccess);
 }
 
-function onBackToGallery(){
+function onSwitchGalleryEditor(){
 	document.querySelector('.canvas-editor-container').classList.toggle('hide');
 	document.querySelector('.images-container').classList.toggle('hide');
 	document.querySelector('.about').classList.toggle('hide');
+	let elLink = document.querySelector('.menu-item'); 
+	if (elLink.innerText === 'Gallery') elLink.innerText = 'Editor'
+	else elLink.innerText = 'Gallery' 
+
+	
 }
 
 // function onChangeProperty(value, property) {
