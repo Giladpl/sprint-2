@@ -41,8 +41,10 @@ function addTouchListeners() {
 
 function onDown(ev) {
 	const pos = getEvPos(ev);
-	gActiveLine = isLineClicked(pos);	
+	gActiveLine = isLineClicked(pos);
+	var currMeme = getCurrMeme();
 	if (!gActiveLine) return;
+	currMeme.selectedLineIdx = gActiveLine.gIdx;
 	gActiveLine.isDragging = true;
 	gStartPos = pos;
 	document.body.style.cursor = 'grabbing';
@@ -52,10 +54,10 @@ function onMove(ev) {
 	if (!gActiveLine) return;
 	if (gActiveLine.isDragging) {
 		const pos = getEvPos(ev);
-		
+
 		const distanceX = pos.x - gStartPos.x;
 		const distanceY = pos.y - gStartPos.y;
-	
+
 		gActiveLine.pos.x += distanceX;
 		gActiveLine.pos.y += distanceY;
 
@@ -70,7 +72,6 @@ function onUp() {
 	gActiveLine.isDragging = false;
 	gActiveLine = null;
 	document.body.style.cursor = 'auto';
-
 }
 
 function getEvPos(ev) {
@@ -89,14 +90,27 @@ function getEvPos(ev) {
 	return pos;
 }
 
-function renderGallery() {
-	let imgs = getImgs();
+function onFilterSearch(ev, elSearch) {
+	ev.preventDefault();
+	const searchWord = elSearch.value;
+	const filteredImgs = getImgs(searchWord)
+	if (!searchWord){ 
+		renderGallery() 
+		return
+	}
+	renderGallery(filteredImgs)
+}
+
+function renderGallery(filteredImgs) { 	
+	console.log(filteredImgs);
+	
+	const imgs = filteredImgs || getImgs()
 	let htmls = imgs.map(
 		(img, i) =>
 			`<img data-id="${
-				i + 1
+				img.id
 			}" onclick="onChooseImg(this)" class="img-option btn-pointer" src="imgs/meme-imgs (square)/${
-				i + 1
+				img.id
 			}.jpg">`
 	);
 	document.querySelector('.images-content').innerHTML = htmls.join('');
@@ -165,7 +179,6 @@ function onChangeFontSize(diff) {
 	// console.log('onChangeFontSize');
 	gCurrMeme = getCurrMeme();
 	changeFontSize(diff);
-	resetCanvas();
 	renderCanvas();
 }
 
@@ -177,32 +190,18 @@ function onSwitchRow() {
 function onAlign(direction) {
 	// console.log(direction);
 	alignText(direction);
-	resetCanvas();
 	renderCanvas();
 }
 
 function onMoveText(diff) {
 	// console.log('onMoveText');
 	moveText(diff);
-	resetCanvas();
 	renderCanvas();
 }
 
 function onDeleteLine() {
 	deleteLine();
-	resetCanvas();
 	renderCanvas();
-}
-
-function drawRectBorder(text, x, y) {
-	gCtx.beginPath();
-	gCtx.rect(x, y, 150, 150);
-	gCtx.fillStyle = 'orange';
-	// gCtx.fill()
-	let width = gCtx.measureText(text);
-	gCtx.fillRect(x, y, 150, 150);
-	gCtx.strokeStyle = 'black';
-	gCtx.stroke();
 }
 
 // TODO- need to allow user to see also dynamic changes with fontsize/algin
@@ -222,3 +221,25 @@ function onShowText(string) {
 	gCtx.strokeText(string, canvas.width / 2, canvas.height / 8);
 	renderText();
 }
+
+function onChangeFill(elColor) {
+	let color = elColor.value;
+	changeFill(color);
+	renderCanvas();
+}
+function onChangeStroke(elColor) {
+	let color = elColor.value;
+	changeStroke(color);
+	renderCanvas();
+}
+function onChangeFont(elFont) {
+	let font = elFont.value;
+	changeFont(font);
+	renderCanvas();
+}
+
+// function onChangeProperty(value, property) {
+// 	// const value = elValue.value;
+// 	changeProperty(value, property);
+// 	renderCanvas();
+// }

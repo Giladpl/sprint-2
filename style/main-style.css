@@ -1,217 +1,257 @@
 @font-face {
-  font-family: Montserrat-regular;
-  src: url(../fonts/Montserrat-Regular.ttf);
+	font-family: Montserrat-regular;
+	src: url(../fonts/Montserrat-Regular.ttf);
 }
 
 @font-face {
-  font-family: Montserrat-thin;
-  src: url(../fonts/Montserrat-Thin.ttf);
+	font-family: Montserrat-thin;
+	src: url(../fonts/Montserrat-Thin.ttf);
 }
 
 @font-face {
-  font-family: Montserrat-bold;
-  src: url(../fonts/Montserrat-Bold.ttf);
+	font-family: Montserrat-bold;
+	src: url(../fonts/Montserrat-Bold.ttf);
 }
 
 @font-face {
-  font-family: GochiHand-Regular;
-  src: url(../fonts/GochiHand-Regular.ttf);
+	font-family: GochiHand-Regular;
+	src: url(../fonts/GochiHand-Regular.ttf);
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 html {
-  font-family: 'Montserrat-regular', sans-serif;
+	font-family: 'Montserrat-regular', sans-serif;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background-color: #e3e3e3;
-  /* height: 100vh; */
+	margin: 0;
+	padding: 0;
+	background-color: #e3e3e3;
+	/* height: 100vh; */
 }
 
 .header {
-  background-color: #ff7f00;
-  height: 66px;
-  font-size: 19px;
+	background-color: #ff7f00;
+	height: 66px;
+	font-size: 19px;
 }
 
 .header-content {
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 .main-container {
-  max-width: 1100px;
-  padding-left: 50px;
-  padding-right: 50px;
-  margin: 0 auto;
+	max-width: 1100px;
+	padding-left: 50px;
+	padding-right: 50px;
+	margin: 0 auto;
+}
+
+.search-input-field {
+	margin-top: 10px;
+	width: 300px;
+	height: 40px;
+	border-radius: 12px;
+	background-color: #ffffff;
+	text-align: center;
+	font-size: 20px;
 }
 
 .images-content {
-  display: grid;
-  gap: 1.25rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	display: grid;
+	gap: 1.25rem;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .images-container {
-  background-color: #e3e3e3;
+	background-color: #e3e3e3;
+	padding-bottom: 40px;
 }
 
 .img-option {
-  max-width: 100%;
-  max-height: auto;
-  object-fit: cover;
-  margin-top: 1.875rem;
+	max-width: 100%;
+	max-height: auto;
+	object-fit: cover;
+	margin-top: 1.875rem;
+	transition: opacity 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.img-option:hover {
+	opacity: 0.8;
+	transform: translateY(-5px);
+	box-shadow: 0px 4px 5px;
 }
 
 .canvas-editor-container {
-  padding-left: 50px;
-  padding-bottom: 20px;
-  padding-top: 20px;
-  background-color: #e3e3e3;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	background-color: #e3e3e3;
 }
 
 .editor-container {
-  max-width: 380px;
+	max-width: 380px;
 }
 
 .text-input {
-  width: 373px;
-  height: 60px;
-  border-radius: 12px;
-  background-color: #ffffff;
-  text-align: center;
-  line-height: 60px;
-  font-size: 28px;
-  margin-bottom: 30px;
+	width: 360px;
+	height: 40px;
+	border-radius: 12px;
+	background-color: #ffffff;
+	text-align: center;
+	font-size: 25px;
+	margin-bottom: 14px;
 }
 
 .canvas-container {
-  width: 100%;
-  text-align: center;
+	width: 100%;
+	text-align: center;
+	margin-right: 171px;
 }
 
 .icon-container {
-  width: 60px;
-  height: 60px;
-  border-radius: 12px;
-  background-color: #ffffff;
-  margin: 0 10px 40px;
+	width: 60px;
+	height: 60px;
+	border-radius: 12px;
+	background-color: #ffffff;
+	margin: 0px 15px 39px 0px;
 }
 
 .icon-btn {
-  width: 40px;
-  height: 40px;
-  position: relative;
+	width: 40px;
+	height: 40px;
+	position: relative;
+}
+
+.share-btn {
+	border: none;
 }
 
 .icon-container:hover {
-  background-color: #a59595;
+	background-color: #a59595;
 }
 
 .color-picker-fill,
 .color-picker-stroke {
-  position: absolute;
-  cursor: pointer;
-  opacity: 0;
+	position: absolute;
+	cursor: pointer;
+	opacity: 0;
 }
 
 .select-font {
-  width: 220px;
-  height: 60px;
-  border-radius: 12px;
-  font-size: 20px;
+	width: 220px;
+	height: 60px;
+	border-radius: 12px;
+	font-size: 20px;
+	margin-right: 7px;
 }
 
 .about {
-  height: 565px;
-  font-size: 20px;
-  background-color: white;
+	height: 565px;
+	font-size: 20px;
+	background-color: white;
 }
 
 .about-pic {
-  width: 322px;
-  height: 322px;
-  margin-right: 40px;
-  margin-top: 70px;
+	width: 322px;
+	height: 322px;
+	margin-right: 40px;
+	margin-top: 70px;
 }
 
 .about-pic img {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
+	max-width: 100%;
+	max-height: 100%;
+	border-radius: 50%;
+	object-fit: cover;
 }
 
 .social-media-icon {
-  margin-right: 10px;
-  height: 40px;
-  width: 40px;
-  background-color: #ff7f00;
-  border-radius: 12px;
-  color: #fff;
+	margin-right: 10px;
+	height: 40px;
+	width: 40px;
+	background-color: #ff7f00;
+	border-radius: 12px;
+	color: #fff;
 }
 
 .footer {
-  /* width: 100%; */
-  height: 110px;
-  background-color: #ff7f00;
+	/* width: 100%; */
+	padding-top: 15px;
+	height: 85px;
+	background-color: #ff7f00;
 }
 
 /* Helpers */
 
 .flex {
-  display: flex;
+	display: flex;
 }
 
 .flex.justify-between {
-  justify-content: space-between;
+	justify-content: space-between;
 }
 
 .flex.align-center {
-  align-items: center;
+	align-items: center;
 }
 
 .flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .flex-start-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
 }
 
 .flex-center-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .btn-pointer {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .hide {
-  display: none;
+	display: none;
 }
 
 .clean-list {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.clean-link {
+	text-decoration: none;
+	color: #000;
 }
 
 @media (max-width: 1100px) {
-  .canvas-editor-container {
-    flex-direction: column;
-  }
+	.canvas-editor-container {
+		flex-direction: column;
+	}
+
+	.editor-container {
+		margin-right: 140px;
+		margin-top: 20px;
+	}
+}
+
+@media (max-width: 670px) {
+	#canvas {
+		width: 400px;
+		height: 400px;
+	}
 }

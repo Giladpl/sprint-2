@@ -22,16 +22,17 @@
 
   <main>
     <div class="images-container">
+      <div class="search-container flex-center"><input class="search-input-field" type="text" placeholder="Search" onkeyup="onFilterSearch(event, this)"></div>
       <div class="images-content main-container">
         <!-- images are rendered here -->
       </div>
     </div>
     <div class="canvas-editor-container flex-center main-container hide">
       <div class="canvas-container">
-        <canvas id="canvas" height="550" width="550"></canvas>
+        <canvas id="canvas" height="450" width="450"></canvas>
       </div>
       <div class="editor-container">
-        
+
         <div class="text-input">
           <input oninput="onShowText(this.value)" class="text-input" name="text" type="text" placeholder="Enter Text:">
         </div>
@@ -62,15 +63,29 @@
               onclick="onAlign('left')"></figure>
         </div>
         <div class="third-row-btns-container flex">
-          <div><select class="select-font">
+          <div><select onchange="onChangeFont(this)" class="select-font">
               <option value="Impact">Impact</option>
               <option value="GochiHand-Regular">hand-written</option>
             </select>
           </div>
-          <figure class="icon-container flex-center"><img class="icon-btn btn-pointer" src="icons/text stroke.png"><input
-            class="color-picker-stroke icon-btn" type="color"></figure>
+          <figure class="icon-container flex-center"><img class="icon-btn btn-pointer"
+              src="icons/text stroke.png"><input class="color-picker-stroke icon-btn" onchange="onChangeStroke(this)"
+              type="color"></figure>
           <figure class="icon-container flex-center"><img class="icon-btn" src="icons/paint-board-and-brush.png"><input
-              class="color-picker-fill icon-btn" type="color" value="#ff1500"></figure>
+              class="color-picker-fill icon-btn" onchange="onChangeFill(this)" type="color" value="#ff1500"></figure>
+        </div>
+
+        <div class="forth-row-btns-container flex">
+          <a href="#" class="icon-container flex-center clean-link " onclick="onDownloadImg(this)"
+            download="my-meme.jpg"> <i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
+          <form action="" method="POST" enctype="multipart/form-data" onsubmit="onUploadImg(this, event)">
+            <input name="img" id="imgData" type="hidden" />
+           
+            <div class="share-container">
+              <button class="share-btn icon-container flex-center btn-pointer" type="submit"><i class="fa fa-share-alt fa-3x" aria-hidden="true"></i></button>
+            </div>
+          </form>
+
         </div>
       </div>
     </div>
@@ -78,18 +93,18 @@
 
   <section class="about">
     <div class="about-content main-container flex-center">
-    <div class="about-pic"><img src="imgs/profilePic.jpg"></div>
-    <div class="about-content flex-start-row ">
-      <h2>Gilad Peltz</h2>
-      <p>Barista whipped irish coffee spoon so acerbic fair trade. Aromatic, mug cappuccino single origin seasonal
-        espresso pumpkin spice body.</p>
-      <div class="social-media-links flex">
-        <div class="social-media-icon flex-center"><i class="fab fa-facebook-f fa-lg btn-pointer"></i></div>
-        <div class="social-media-icon flex-center"><i class="fab fa-linkedin-in fa-lg btn-pointer"></i></div>
-        <div class="social-media-icon flex-center"><i class="fab fa-github fa-lg btn-pointer"></i></div>
+      <div class="about-pic"><img src="imgs/profilePic.jpg"></div>
+      <div class="about-content flex-start-row ">
+        <h2>Gilad Peltz</h2>
+        <p>Barista whipped irish coffee spoon so acerbic fair trade. Aromatic, mug cappuccino single origin seasonal
+          espresso pumpkin spice body.</p>
+        <div class="social-media-links flex">
+          <div class="social-media-icon flex-center"><i class="fab fa-facebook-f fa-lg btn-pointer"></i></div>
+          <div class="social-media-icon flex-center"><i class="fab fa-linkedin-in fa-lg btn-pointer"></i></div>
+          <div class="social-media-icon flex-center"><i class="fab fa-github fa-lg btn-pointer"></i></div>
+        </div>
       </div>
     </div>
-  </div>
   </section>
 
 
@@ -97,6 +112,7 @@
     <div class="logo-container"><img class="logo" src="imgs/logo.png"></div>
     <p>all rights reserved 2019</p>
   </footer>
+  <script src="script/download-upload-services.js"></script>
   <script src="script/main-services.js"></script>
   <script src="script/main-controller.js"></script>
 </body>
