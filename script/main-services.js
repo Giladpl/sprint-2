@@ -148,7 +148,6 @@ function createNewLine(
 	});
 	gIdx++;
 	gMeme.selectedLineIdx = gMeme.line.length - 1;
-	// changeCurrpos.y();
 }
 
 function switchActiveLine() {
@@ -207,6 +206,8 @@ function changeStroke(color) {
 
 function changeFill(color) {
 	gMeme.line[gMeme.selectedLineIdx].fillStyle = color;
+	console.log(gMeme.line[gMeme.selectedLineIdx].fillStyle);
+	
 }
 
 function changeFont(font) {

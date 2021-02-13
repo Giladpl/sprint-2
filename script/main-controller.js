@@ -50,7 +50,7 @@ function onDown(ev) {
 	document.body.style.cursor = 'grabbing';
 }
 
-//TODO drag and drop works only on PC and not on phone
+//TODO drag and drop works only on PC and not on phone + having problems when narrowing through dev-tools
 function onMove(ev) {
 	if (!gActiveLine) return;
 	if (gActiveLine.isDragging) {
@@ -80,14 +80,14 @@ function getEvPos(ev) {
 		x: ev.offsetX,
 		y: ev.offsetY,
 	};
-	// if (gTouchEvs.includes(ev.type)) {
-	// 	ev.preventDefault();
-	// 	ev = ev.changedTouches[0];
-	// 	pos = {
-	// 		x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-	// 		y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
-	// 	};
-	// }
+	if (gTouchEvs.includes(ev.type)) {
+		ev.preventDefault();
+		ev = ev.changedTouches[0];
+		pos = {
+			x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+			y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+		};
+	}
 	return pos;
 }
 
@@ -103,8 +103,7 @@ function onFilterSearch(ev, elSearch) {
 }
 
 function renderGallery(filteredImgs) { 	
-	console.log(filteredImgs);
-	
+	// console.log(filteredImgs);
 	const imgs = filteredImgs || getImgs()
 	let htmls = imgs.map(
 		(img, i) =>
@@ -178,7 +177,7 @@ function resetCanvas() {
 
 function onChangeFontSize(diff) {
 	// console.log('onChangeFontSize');
-	gCurrMeme = getCurrMeme();
+	// gCurrMeme = getCurrMeme();
 	changeFontSize(diff);
 	renderCanvas();
 }
