@@ -187,6 +187,8 @@ function onChangeFontSize(diff) {
 	} = gCtx.measureText(txt);
 	updateLineModel(width, midToLeftW, midToRightW, height);
 	renderCanvas();
+	drawTextBorder()
+
 }
 
 function updateLineCanvas() {
@@ -245,12 +247,16 @@ function onChangeFill(elColor) {
 	let color = elColor.value;
 	changeFill(color);
 	renderCanvas();
+	drawTextBorder()
+
 }
 
 function onChangeStroke(elColor) {
 	let color = elColor.value;
 	changeStroke(color);
 	renderCanvas();
+	drawTextBorder()
+
 }
 
 function onChangeFont(elFont) {
