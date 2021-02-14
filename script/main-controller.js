@@ -140,6 +140,8 @@ function onAddText() {
 	);
 	document.querySelector('input[name=text]').value = '';
 	renderCanvas();
+	drawTextBorder();
+
 }
 
 function renderCanvas() {
@@ -204,7 +206,7 @@ function onSwitchRow() {
 	renderCanvas();
 	switchActiveLine();
 	drawTextBorder();
-	updateLineCanvas() 
+	// updateLineCanvas() 
 }
 //TODO- when alining needs to adjust the new location of the line in order to be able to still drag and drop
 function onAlign(direction) {
