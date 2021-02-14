@@ -11,7 +11,7 @@ const gImgs = [
 	{
 		id: 1,
 		url: 'img/1.jpg',
-		keywords: ['trump','politics', 'all'],
+		keywords: ['trump', 'politics', 'all'],
 	},
 	{
 		id: 2,
@@ -36,27 +36,27 @@ const gImgs = [
 	{
 		id: 6,
 		url: 'img/6.jpg',
-		keywords: ['hair','movie', 'movies', 'funny','all'],
+		keywords: ['hair', 'movie', 'movies', 'funny', 'all'],
 	},
 	{
 		id: 7,
 		url: 'img/7.jpg',
-		keywords: ['funny', 'baby','all'],
+		keywords: ['funny', 'baby', 'all'],
 	},
 	{
 		id: 8,
 		url: 'img/8.jpg',
-		keywords: ['funny', 'hat','movie', 'movies','all'],
+		keywords: ['funny', 'hat', 'movie', 'movies', 'all'],
 	},
 	{
 		id: 9,
 		url: 'img/9.jpg',
-		keywords: ['baby', 'funny','all'],
+		keywords: ['baby', 'funny', 'all'],
 	},
 	{
 		id: 10,
 		url: 'img/9.jpg',
-		keywords: ['obama', 'politics','all'],
+		keywords: ['obama', 'politics', 'all'],
 	},
 	{
 		id: 11,
@@ -71,17 +71,17 @@ const gImgs = [
 	{
 		id: 13,
 		url: 'img/13.jpg',
-		keywords: ['movie','movies', 'cheers', 'all'],
+		keywords: ['movie', 'movies', 'cheers', 'all'],
 	},
 	{
 		id: 14,
 		url: 'img/14.jpg',
-		keywords: ['movie','movies','all'],
+		keywords: ['movie', 'movies', 'all'],
 	},
 	{
 		id: 15,
 		url: 'img/15.jpg',
-		keywords: ['movie','movies','all'],
+		keywords: ['movie', 'movies', 'all'],
 	},
 	{
 		id: 16,
@@ -100,9 +100,9 @@ const gImgs = [
 	},
 ];
 
-//TODO add the ability to also return partial searches and not only the entire string + add toLowerCase 
+//TODO add the ability to also return partial searches and not only the entire string + add toLowerCase
 function getImgs(keyword = 'all') {
-	const filteredImgs = gImgs.filter(img => img.keywords.includes(keyword))
+	const filteredImgs = gImgs.filter((img) => img.keywords.includes(keyword));
 	return filteredImgs;
 }
 
@@ -166,7 +166,17 @@ function getPicById(idx) {
 // TODO- combine all function that changes Meme properties into one function
 
 function changeFontSize(diff) {
-	gMeme.line[gMeme.selectedLineIdx].size += diff;
+	const currLine = gMeme.line[gMeme.selectedLineIdx];
+	currLine.size += diff;
+	return currLine.txt;
+}
+
+function updateLineModel(width, midToLeftW, midToRightW, height) {
+	gMeme.line[gMeme.selectedLineIdx].height = height;
+	gMeme.line[gMeme.selectedLineIdx].width = width;
+	gMeme.line[gMeme.selectedLineIdx].midToLeftW = midToLeftW;
+	gMeme.line[gMeme.selectedLineIdx].midToRightW = midToRightW;
+	gMeme.line[gMeme.selectedLineIdx].height = height;
 }
 
 function alignText(direction) {
@@ -194,12 +204,20 @@ function isLineClicked(clickedPos) {
 			clickedPos.x < maxX &&
 			clickedPos.y < maxY &&
 			clickedPos.y > minY
-			)
-
+		)
 			return currLine;
-		});
-	}
-	
+	});
+}
+
+function prepCoordinatesForBorder() {
+	const currLine = gMeme.line[gMeme.selectedLineIdx];
+	let xMin = currLine.pos.x - currLine.midToLeftW - 20;
+	let xMax = currLine.pos.x + currLine.midToRightW + 20;
+	let yMin = currLine.pos.y - currLine.size - 5;
+	let yMax = currLine.pos.y + currLine.size / 2;
+	return { xMin, xMax, yMin, yMax };
+}
+
 function changeStroke(color) {
 	gMeme.line[gMeme.selectedLineIdx].strokeStyle = color;
 }
@@ -207,24 +225,8 @@ function changeStroke(color) {
 function changeFill(color) {
 	gMeme.line[gMeme.selectedLineIdx].fillStyle = color;
 	console.log(gMeme.line[gMeme.selectedLineIdx].fillStyle);
-	
 }
 
 function changeFont(font) {
 	gMeme.line[gMeme.selectedLineIdx].font = font;
 }
-
-// TODO to understand why the below doesn't work
-// clickedPos.x > (currLine.pos.x - currLine.midToLeftW) &&
-// 			clickedPos.x < (currLine.pos.x + currLine.midToRightW) &&
-// 			clickedPos.y < (currLine.pos.y + (currLine.height / 2)) &&
-// 			clickedPos.y > (currLine.pos.y - (currLine.height / 2))
-
-// function changeProperty(value, property) {
-	// 	gMeme.line[gMeme.selectedLineIdx][property] = value;
-	// }
-	
-	// TODO- Build a func to place new lines on different yPos
-	// function getPosY() {
-	
-	// }

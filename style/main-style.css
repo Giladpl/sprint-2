@@ -94,7 +94,7 @@ border-bottom: white solid;
 }
 
 .canvas-container {
-	padding-top: 25px;
+	/* padding-top: 25px; */
 }
 
 .editor-container {
@@ -172,7 +172,7 @@ border-bottom: white solid;
 .about-pic img {
 	max-width: 100%;
 	max-height: 100%;
-	border-radius: 50%;
+	border-radius: 15%;
 	object-fit: cover;
 }
 
@@ -291,32 +291,39 @@ border-bottom: white solid;
 		width: 80%;
 	}
 
-	body {
-		width: 100%;
+	#canvas {
+		width: 300px;
+		height: 300px;
 	}
 
-	#canvas {
-		width: 350px;
-		height: 350px;
+	.canvas-editor-container{
+		gap: 1rem;
+    margin: 1px auto;
 	}
 
 	.images-content {
-		grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-		gap: 10px;
+		grid-template-columns: repeat(4, 1fr);
 	}
 
+	.text-input {
+		max-width: 340px;
+	}
 	.icon-container{
+		width: 60px;
+		height: 60px;
+	}
+	
+	.editor-container {
+		gap: 0 50px;
+	}
+
+	.icon-btn{
 		width: 40px;
 		height: 40px;
 	}
 
-	.icon-btn{
-		width: 20px;
-		height: 20px;
-	}
-
 	.fa, .fas {
-		font-size: 16px;
+		font-size: 40px;
 		text-align: center;
 	}
 }

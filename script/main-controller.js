@@ -21,6 +21,10 @@ function onInit() {
 function addListeners() {
 	addMouseListeners();
 	addTouchListeners();
+	window.addEventListener('resize', () => {
+		resizeCanvas();
+		renderCanvas();
+	});
 }
 
 function addMouseListeners() {
@@ -65,6 +69,7 @@ function onMove(ev) {
 		gStartPos = pos;
 		document.body.style.cursor = 'grabbing';
 		renderCanvas();
+		drawTextBorder();
 	}
 }
 
@@ -94,24 +99,20 @@ function getEvPos(ev) {
 function onFilterSearch(ev, elSearch) {
 	ev.preventDefault();
 	const searchWord = elSearch.value;
-	const filteredImgs = getImgs(searchWord)
-	if (!searchWord){ 
-		renderGallery() 
-		return
+	const filteredImgs = getImgs(searchWord);
+	if (!searchWord) {
+		renderGallery();
+		return;
 	}
-	renderGallery(filteredImgs)
+	renderGallery(filteredImgs);
 }
 
-function renderGallery(filteredImgs) { 	
+function renderGallery(filteredImgs) {
 	// console.log(filteredImgs);
-	const imgs = filteredImgs || getImgs()
+	const imgs = filteredImgs || getImgs();
 	let htmls = imgs.map(
 		(img, i) =>
-			`<img data-id="${
-				img.id
-			}" onclick="onChooseImg(this)" class="img-option btn-pointer" src="imgs/meme-imgs (square)/${
-				img.id
-			}.jpg">`
+			`<img data-id="${img.id}" onclick="onChooseImg(this)" class="img-option btn-pointer" src="imgs/meme-imgs (square)/${img.id}.jpg">`
 	);
 	document.querySelector('.images-content').innerHTML = htmls.join('');
 }
@@ -177,16 +178,33 @@ function resetCanvas() {
 
 function onChangeFontSize(diff) {
 	// console.log('onChangeFontSize');
-	// gCurrMeme = getCurrMeme();
-	changeFontSize(diff);
+	const txt = changeFontSize(diff);
+	const {
+		width,
+		actualBoundingBoxLeft: midToLeftW,
+		actualBoundingBoxRight: midToRightW,
+		actualBoundingBoxAscent: height,
+	} = gCtx.measureText(txt);
+	updateLineModel(width, midToLeftW, midToRightW, height);
 	renderCanvas();
+}
+
+function updateLineCanvas() {
+	const currLine = getActiveLine();
+	
+	document.querySelector('input[name=text]').value = currLine.txt;
+
+// 	updateLineModel(txt);
 }
 
 function onSwitchRow() {
 	// console.log('onSwitchRow');
+	renderCanvas();
 	switchActiveLine();
+	drawTextBorder();
+	updateLineCanvas() 
 }
-
+//TODO- when alining needs to adjust the new location of the line in order to be able to still drag and drop
 function onAlign(direction) {
 	// console.log(direction);
 	alignText(direction);
@@ -197,6 +215,7 @@ function onMoveText(diff) {
 	// console.log('onMoveText');
 	moveText(diff);
 	renderCanvas();
+	drawTextBorder();
 }
 
 function onDeleteLine() {
@@ -241,34 +260,53 @@ function onChangeFont(elFont) {
 }
 
 function onDownloadImg(elLink) {
-	var imgContent = gElCanvas.toDataURL('image/jpeg')
-	elLink.href = imgContent
+	var imgContent = gElCanvas.toDataURL('image/jpeg');
+	elLink.href = imgContent;
 }
-//TODO- once shared, needs to re-change innerHtml of btn in order to allow user to re-post without refreshing the page. 
+//TODO- once shared, needs to re-change innerHtml of btn in order to allow user to re-post without refreshing the page.
 function onUploadImg(elForm, ev) {
-  ev.preventDefault();
-  document.getElementById('imgData').value = gElCanvas.toDataURL("image/jpeg");
+	ev.preventDefault();
+	document.getElementById('imgData').value = gElCanvas.toDataURL('image/jpeg');
 
-  function onSuccess(uploadedImgUrl) {
-      uploadedImgUrl = encodeURIComponent(uploadedImgUrl)
-      document.querySelector('.share-container').innerHTML = `
+	function onSuccess(uploadedImgUrl) {
+		uploadedImgUrl = encodeURIComponent(uploadedImgUrl);
+		document.querySelector('.share-container').innerHTML = `
       <a class="icon-container flex-center clean-link btn-pointer" href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
       <i class="fab fa-facebook-f fa-2x btn-pointer"></i>  
-      </a>`
-  }
+      </a>`;
+	}
 
-  doUploadImg(elForm, onSuccess);
+	doUploadImg(elForm, onSuccess);
 }
 
-function onSwitchGalleryEditor(){
+function onSwitchGalleryEditor() {
 	document.querySelector('.canvas-editor-container').classList.toggle('hide');
 	document.querySelector('.images-container').classList.toggle('hide');
 	document.querySelector('.about').classList.toggle('hide');
-	let elLink = document.querySelector('.menu-item'); 
-	if (elLink.innerText === 'Gallery') elLink.innerText = 'Editor'
-	else elLink.innerText = 'Gallery' 
+	let elLink = document.querySelector('.menu-item');
+	if (elLink.innerText === 'Gallery') elLink.innerText = 'Editor';
+	else elLink.innerText = 'Gallery';
+}
 
-	
+function drawTextBorder() {
+	const { xMin, xMax, yMin, yMax } = prepCoordinatesForBorder();
+	gCtx.save();
+	gCtx.beginPath();
+	gCtx.setLineDash([5, 15]);
+	gCtx.moveTo(xMin, yMin);
+	gCtx.lineTo(xMax, yMin);
+	gCtx.lineTo(xMax, yMax);
+	gCtx.lineTo(xMin, yMax);
+	gCtx.closePath();
+	gCtx.strokeStyle = 'gold';
+	gCtx.stroke();
+	gCtx.restore();
+}
+
+function resizeCanvas() {
+	const elContainer = document.querySelector('.canvas-container');
+	gElCanvas.width = elContainer.offsetWidth;
+	gElCanvas.height = elContainer.offsetHeight;
 }
 
 // function onChangeProperty(value, property) {
