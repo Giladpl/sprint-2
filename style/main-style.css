@@ -303,7 +303,7 @@ border-bottom: white solid;
 	}
 
 	.images-content {
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 	}
 
 	.text-input {
@@ -326,5 +326,8 @@ border-bottom: white solid;
 	.fa, .fas {
 		font-size: 40px;
 		text-align: center;
+	}
+	.about {
+		height: 350px;
 	}
 }
